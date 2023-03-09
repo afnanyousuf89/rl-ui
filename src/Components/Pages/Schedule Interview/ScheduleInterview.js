@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
 
 const BaseUrl = process.env.REACT_APP_API_URL4;
+const UserUrl = process.env.REACT_APP_API_URL2;
 
 const ScheduleInterview = () => {
 
@@ -25,10 +26,10 @@ const ScheduleInterview = () => {
 
 
   useEffect(()=>{
-        fetch("http://authenticationserviceelastic-env.eba-pf8t7rhm.us-east-1.elasticbeanstalk.com/user/getByRole/2")
+        fetch(`${UserUrl}/user/getByRole/2`)
         .then((response)=>response.json()).then((result)=>setInterviewers(result));
 
-        fetch("http://authenticationserviceelastic-env.eba-pf8t7rhm.us-east-1.elasticbeanstalk.com/user/"+state.JobData.hmId)
+        fetch(`${UserUrl}/user/`+state.JobData.hmId)
         .then((response)=>response.json()).then((result)=>setHmName(result.first_name+" "+result.last_name));
   },[])
 
